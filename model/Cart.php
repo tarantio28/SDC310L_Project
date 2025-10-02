@@ -42,4 +42,11 @@ class Cart {
         $stmt->bind_param("i", $cartId);
         return $stmt->execute();
     }
+
+    // NEW: Method to clear all items from a user's cart
+    public function clear($userId) {
+        $stmt = $this->conn->prepare("DELETE FROM cart WHERE user_id=?");
+        $stmt->bind_param("i", $userId);
+        return $stmt->execute();
+    }
 }
