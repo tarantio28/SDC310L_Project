@@ -10,14 +10,11 @@ $db = new Database();
 $conn = $db->getConnection();
 $productModel = new Product($conn);
 
-// MODIFIED: Fetch products differently based on login status
 $products = null;
 $isLoggedIn = !empty($_SESSION['user_id']);
 if ($isLoggedIn) {
-    // New method gets products and joins cart quantity
     $products = $productModel->allForUser($_SESSION['user_id']);
 } else {
-    // Original method for guests
     $products = $productModel->all();
 }
 

@@ -10,7 +10,6 @@ require_once __DIR__ . "/../model/Cart.php";
 use Model\Database;
 use Model\Cart;
 
-// Define constants for calculations
 define('TAX_RATE', 0.05); // 5%
 define('SHIPPING_RATE', 0.10); // 10%
 

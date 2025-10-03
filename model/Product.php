@@ -9,7 +9,6 @@ class Product {
         return $this->conn->query("SELECT * FROM products ORDER BY product_id DESC");
     }
 
-    // NEW: Method to get all products and join the cart quantity for a specific user
     public function allForUser($userId) {
         $sql = "SELECT p.*, c.quantity AS cart_quantity, c.cart_id
                 FROM products p
@@ -28,7 +27,6 @@ class Product {
         return $stmt->get_result()->fetch_assoc();
     }
     
-    // ... (create, update, delete methods remain the same) ...
     public function create($name, $desc, $price, $stock) {
         $stmt = $this->conn->prepare(
             "INSERT INTO products (product_name, description, price, stock) VALUES (?, ?, ?, ?)"

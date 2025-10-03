@@ -6,7 +6,6 @@ class Cart {
     public function __construct($mysqliConn) { $this->conn = $mysqliConn; }
 
     public function add($userId, $productId, $qty) {
-        // If item already in cart, update quantity
         $stmt = $this->conn->prepare("SELECT cart_id, quantity FROM cart WHERE user_id=? AND product_id=?");
         $stmt->bind_param("ii", $userId, $productId);
         $stmt->execute();
@@ -43,7 +42,6 @@ class Cart {
         return $stmt->execute();
     }
 
-    // NEW: Method to clear all items from a user's cart
     public function clear($userId) {
         $stmt = $this->conn->prepare("DELETE FROM cart WHERE user_id=?");
         $stmt->bind_param("i", $userId);
